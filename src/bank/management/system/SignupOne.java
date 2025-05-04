@@ -208,7 +208,6 @@ public class SignupOne extends JFrame implements ActionListener{
         String pin = pincodeTextField.getText();
 
         try{
-            boolean check = true;
             if(name.isEmpty() || fname.isEmpty() || dob.isEmpty() || gender == null || email.isEmpty()
             || marital == null || address.isEmpty() || city.isEmpty() || state.isEmpty() || pin.isEmpty()
             ){
@@ -222,6 +221,9 @@ public class SignupOne extends JFrame implements ActionListener{
                         + email + "', '" + marital + "', '" + address +
                         "', '" + city + "', '" + pin + "', '" + state + "')";
                 c.s.executeUpdate(query);
+
+                setVisible(false);
+                new SignupTwo(formno).setVisible(true);
             }
         }catch(Exception e){
             System.out.println(e);
