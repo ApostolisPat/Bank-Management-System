@@ -186,16 +186,24 @@ public class SignupTwo extends JFrame implements ActionListener{
         String saadhar = aadharTextField.getText();
 
         try{
-            Conn c = new Conn();
-            // Create the query
-            String query = "Insert into signuptwo values('" + formno + "', '" + sreligion + "', '"
-                    + scategory + "', '" + sincome + "', '" + seducation + "', '"
-                    + soccupation + "', '" + span + "', '" + saadhar +
-                    "', '" + seniorcitizen + "', '" + existingaccount + "')";
-            c.s.executeUpdate(query);
+            if(formno.isEmpty() || sreligion.isEmpty() || scategory.isEmpty() || sincome.isEmpty() ||
+            seducation.isEmpty() || soccupation.isEmpty() || span.isEmpty() || saadhar.isEmpty() ||
+            seniorcitizen.isEmpty() || existingaccount.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Please, fill all required values");
+            }
+            else {
+                Conn c = new Conn();
+                // Create the query
+                String query = "Insert into signuptwo values('" + formno + "', '" + sreligion + "', '"
+                        + scategory + "', '" + sincome + "', '" + seducation + "', '"
+                        + soccupation + "', '" + span + "', '" + saadhar +
+                        "', '" + seniorcitizen + "', '" + existingaccount + "')";
+                c.s.executeUpdate(query);
+            }
 
             //Signup-third-page Object
             setVisible(false);
+            new SignupThree(formno).setVisible(true);
         }catch(Exception e){
             System.out.println(e);
         }
